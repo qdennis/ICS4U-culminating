@@ -25,43 +25,43 @@ public class HomePage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        lblTBS = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblID = new javax.swing.JLabel();
+        lblbalnc = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnsendmoney = new javax.swing.JButton();
+        btnlivestock = new javax.swing.JButton();
+        btnhelp = new javax.swing.JButton();
+        btnsignout = new javax.swing.JButton();
+        btnaccount = new javax.swing.JButton();
+        btnmovemoney = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel1.setText("TBS");
+        lblTBS.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        lblTBS.setText("TBS");
 
         jLabel2.setText("settext to username");
 
-        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
-        jLabel3.setText("Account #ID");
+        lblID.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        lblID.setText("Account #ID");
 
-        jLabel4.setText("Balance:");
+        lblbalnc.setText("Balance:");
 
         jLabel5.setText("$x.xx");
 
-        jButton1.setText("Send Money");
+        btnsendmoney.setText("Send Money");
 
-        jButton2.setText("Live Stocks");
+        btnlivestock.setText("Live Stocks");
 
-        jButton3.setText("Help");
+        btnhelp.setText("Help");
 
-        jButton4.setText("Sign Out");
+        btnsignout.setText("Sign Out");
 
-        jButton5.setText("Accounts");
+        btnaccount.setText("Accounts");
 
-        jButton6.setText("Move Money");
+        btnmovemoney.setText("Move Money");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -71,27 +71,27 @@ public class HomePage extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
+                        .addComponent(lblbalnc)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton6))
+                        .addComponent(btnmovemoney))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(lblTBS)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(btnlivestock)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton5)
+                        .addComponent(btnaccount)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                        .addComponent(jButton3)
+                        .addComponent(btnhelp)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4))
+                        .addComponent(btnsignout))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addComponent(lblID)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addComponent(btnsendmoney)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -99,23 +99,23 @@ public class HomePage extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(lblTBS)
                     .addComponent(jLabel2))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jButton1))
+                    .addComponent(lblID)
+                    .addComponent(btnsendmoney))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
+                    .addComponent(lblbalnc)
                     .addComponent(jLabel5)
-                    .addComponent(jButton6))
+                    .addComponent(btnmovemoney))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton4)
-                    .addComponent(jButton3)
-                    .addComponent(jButton5))
+                    .addComponent(btnlivestock)
+                    .addComponent(btnsignout)
+                    .addComponent(btnhelp)
+                    .addComponent(btnaccount))
                 .addContainerGap())
         );
 
@@ -158,16 +158,16 @@ public class HomePage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify                     
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnaccount;
+    private javax.swing.JButton btnhelp;
+    private javax.swing.JButton btnlivestock;
+    private javax.swing.JButton btnmovemoney;
+    private javax.swing.JButton btnsendmoney;
+    private javax.swing.JButton btnsignout;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel lblID;
+    private javax.swing.JLabel lblTBS;
+    private javax.swing.JLabel lblbalnc;
     // End of variables declaration                   
 }
