@@ -1,0 +1,27 @@
+public static String luhnAlgorithm(String x){ //method used to validate credit card
+        String[] cardNumberSplit = x.split(""); //splits numbers into individual digits
+        List<Integer> cardNumberList = new ArrayList<>(); 
+        int sum1 = 0; // sums to validate credit card
+        int sum2 = 0; 
+
+        for (String digit : cardNumberSplit) {
+            cardNumberList.add(Integer.parseInt(digit)); //compiles seperated digits into a list
+        }
+
+        for (int i = 0; i < cardNumberList.size(); i++) { // for loop cycles through every iteration in the list
+            int digit = cardNumberList.get(i); // digit is the list at a specific index
+
+
+            if (i % 2 != 0) {// if the index is even, multiplies the number by 2
+                digit *= 2; 
+                if (digit > 9) {// if the number is greater than 9, subtracts 9 from the number
+                    digit -= 9;
+                }
+                sum2 += digit; //if the index is even, add to sum 2
+            } else {
+                sum1 += digit; //if the index is odd, add to sum 1
+            }
+        }
+        int totalSum = sum1 + sum2; //sums the 2 sums together
+        
+        return String.valueOf(totalSum);  //returns the totalSum
