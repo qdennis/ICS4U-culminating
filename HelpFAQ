@@ -37,6 +37,11 @@ public class HelpFAQ extends javax.swing.JFrame {
         lblFAQ.setText("FAQ");
 
         btnhome.setText("Home");
+        btnhome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnhomeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -72,6 +77,10 @@ public class HelpFAQ extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>                        
+
+    private void btnhomeActionPerformed(java.awt.event.ActionEvent evt) {                                        
+        // TODO add your handling code here:
+    }                                       
 
     /**
      * @param args the command line arguments
