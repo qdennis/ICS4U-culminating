@@ -135,7 +135,6 @@ public class SignIn extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
 
         String inputReversed = new StringBuilder(txtuser.getText()).reverse().toString();
         String[] cardNumberSplit = inputReversed.split(""); //splits numbers into individual digits
@@ -169,11 +168,15 @@ public class SignIn extends javax.swing.JFrame {
     }                                        
 
     private void btnforgotpassActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        // TODO add your handling code here:
+        this.setVisible(false);
+        ForgotPassword newFrame = new ForgotPassword();
+        newFrame.setVisible(true);
     }                                             
 
     private void btnsignupActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        // TODO add your handling code here:
+        this.setVisible(false);
+        SignUp newFrame = new SignUp();
+        newFrame.setVisible(true);
     }                                         
 
     /**
