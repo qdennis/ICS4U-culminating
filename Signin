@@ -1,3 +1,5 @@
+import java.util.*;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -138,7 +140,7 @@ public class SignIn extends javax.swing.JFrame {
 
         String inputReversed = new StringBuilder(txtuser.getText()).reverse().toString();
         String[] cardNumberSplit = inputReversed.split(""); //splits numbers into individual digits
-        List<Integer> cardNumberList = new ArrayList<>(); 
+        ArrayList<Integer> cardNumberList = new ArrayList<>(); 
         int sum1 = 0; // sums to validate credit card
         int sum2 = 0; 
 
