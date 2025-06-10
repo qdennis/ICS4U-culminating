@@ -52,16 +52,46 @@ public class HomePage extends javax.swing.JFrame {
         jLabel5.setText("$x.xx");
 
         btnsendmoney.setText("Send Money");
+        btnsendmoney.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsendmoneyActionPerformed(evt);
+            }
+        });
 
         btnlivestock.setText("Live Stocks");
+        btnlivestock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlivestockActionPerformed(evt);
+            }
+        });
 
         btnhelp.setText("Help");
+        btnhelp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnhelpActionPerformed(evt);
+            }
+        });
 
         btnsignout.setText("Sign Out");
+        btnsignout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsignoutActionPerformed(evt);
+            }
+        });
 
         btnaccount.setText("Accounts");
+        btnaccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnaccountActionPerformed(evt);
+            }
+        });
 
         btnmovemoney.setText("Move Money");
+        btnmovemoney.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnmovemoneyActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -121,6 +151,30 @@ public class HomePage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>                        
+
+    private void btnsendmoneyActionPerformed(java.awt.event.ActionEvent evt) {                                             
+        // TODO add your handling code here:
+    }                                            
+
+    private void btnmovemoneyActionPerformed(java.awt.event.ActionEvent evt) {                                             
+        // TODO add your handling code here:
+    }                                            
+
+    private void btnlivestockActionPerformed(java.awt.event.ActionEvent evt) {                                             
+        // TODO add your handling code here:
+    }                                            
+
+    private void btnaccountActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        // TODO add your handling code here:
+    }                                          
+
+    private void btnhelpActionPerformed(java.awt.event.ActionEvent evt) {                                        
+        // TODO add your handling code here:
+    }                                       
+
+    private void btnsignoutActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        // TODO add your handling code here:
+    }                                          
 
     /**
      * @param args the command line arguments
