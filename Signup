@@ -41,6 +41,11 @@ public class SignUp extends javax.swing.JFrame {
         lbltitle.setText("Welcome to Tung Bank Sahur!");
 
         btnback.setText("Back");
+        btnback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbackActionPerformed(evt);
+            }
+        });
 
         lblusername.setText("Username:");
 
@@ -49,6 +54,11 @@ public class SignUp extends javax.swing.JFrame {
         lblconfirmpass.setText("Confirm Password:");
 
         btnconfirm.setText("Confirm");
+        btnconfirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnconfirmActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -107,6 +117,14 @@ public class SignUp extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>                        
+
+    private void btnconfirmActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        // TODO add your handling code here:
+    }                                          
+
+    private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {                                        
+        // TODO add your handling code here:
+    }                                       
 
     /**
      * @param args the command line arguments
