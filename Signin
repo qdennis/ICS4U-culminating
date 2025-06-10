@@ -49,6 +49,11 @@ public class SignIn extends javax.swing.JFrame {
         btnforgotpass.setText("Forgot Password?");
 
         btnlogin.setText("Login");
+        btnlogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnloginActionPerformed(evt);
+            }
+        });
 
         btnsignup.setText("Sign Up");
 
@@ -119,6 +124,10 @@ public class SignIn extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                        
 
+    private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+    }                                        
+
     /**
      * @param args the command line arguments
      */
@@ -167,4 +176,3 @@ public class SignIn extends javax.swing.JFrame {
     private javax.swing.JTextField txtuser;
     // End of variables declaration                   
 }
-
