@@ -161,10 +161,7 @@ public class SignUp extends javax.swing.JFrame {
                 }
             }
             int totalSum = sum1+sum2;
-            System.out.println(totalSum);
             int checkDigit = (10-(totalSum % 10)) % 10;
-            System.out.println(checkDigit);
-            System.out.println(accountNumber);
             
             String realAccountNumber = accountNumber + checkDigit;
             System.out.println(realAccountNumber);
