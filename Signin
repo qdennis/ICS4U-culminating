@@ -24,19 +24,21 @@ public class SignIn extends javax.swing.JFrame {
         
         public void getAccountLists(String fileName) throws IOException{
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            String accountNumber, fullName , password, spacer;
+            String accountNumber, fullName , password, balance, spacer;
 
             while ((accountNumber = reader.readLine()) != null) {
                 fullName = reader.readLine();
                 password = reader.readLine();
+                balance = reader.readLine();
                 spacer = reader.readLine();
 
                 if (accountNumber != null && fullName != null && password != null && spacer.startsWith("-")) {
                     
-                    String[] uniqueAccount = new String[3]; 
+                    String[] uniqueAccount = new String[4]; 
                     uniqueAccount[0] = accountNumber.split(":")[1].trim();
                     uniqueAccount[1] = fullName.split(":")[1].trim();
                     uniqueAccount[2] = password.split(":")[1].trim();
+                    uniqueAccount[3] = balance.split(":")[1].trim();
                     accountList.add(uniqueAccount);
                 }
             }
