@@ -181,10 +181,10 @@ public class SignIn extends javax.swing.JFrame {
                 AccountLoader fileAccess = new AccountLoader();
                 fileAccess.getAccountLists("src/AccountInfo.txt");
                 ArrayList<String[]> accountList = fileAccess.getAccountList();
+                String password = new String(txtpass.getPassword());
                 
                 for (int i=0; i < accountList.size(); i++){ //linear search
-                    if (accountList.get(i)[2].equals(txtuser.getText()) && accountList.get(i)[1].equals(txtpass.getPassword())){
-                        
+                    if (accountList.get(i)[2].equals(txtuser.getText()) && accountList.get(i)[1].equals(password)){
                         int index = i;
                         this.setVisible(false);
                         HomePage newFrame = new HomePage(accountList, i);
@@ -266,4 +266,4 @@ public class SignIn extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtpass;
     private javax.swing.JTextField txtuser;
     // End of variables declaration                   
-}
+}   
