@@ -4,6 +4,7 @@
  */
 import java.util.*;
 import java.io.*;
+import javax.swing.JOptionPane;
 /**
  *
  * @author esmondlam
@@ -175,6 +176,10 @@ public class SignUp extends javax.swing.JFrame {
                 writer.write("Balance: $0.00" + "\n"); //defaulted balance
                 writer.write("---------------------------\n"); // separator for readability
                 System.out.println("Data successfully written to file.");
+                JOptionPane.showMessageDialog(null, "Welcome to Tung Bank Sahur!" + "\n" + "Your account number is: " + realAccountNumber + "\n" + "Please write this down and safe for future use, you will use this to sign in.");
+                this.setVisible(false);
+                SignIn newFrame = new SignIn();
+                newFrame.setVisible(true);
             } catch (IOException e) {
                 System.out.println("An error occurred while writing to file.");
             }
