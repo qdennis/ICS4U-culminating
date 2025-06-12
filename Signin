@@ -180,11 +180,11 @@ public class SignIn extends javax.swing.JFrame {
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {
         
         if (txtuser.getText().isEmpty() || txtpass.getPassword().length == 0) {
-            System.out.println("Please input a username and password");
+            lblErrorMsg.setText("Please input a username and password");
         } else if (!txtuser.getText().matches("[0-9]*")) {
-            System.out.println("Account number should have numbers only");
+            lblErrorMsg.setText("Account number should have numbers only");
         } else if (txtuser.getText().length() != 16) {
-            System.out.println("Account number must be 16 digits long");
+            lblErrorMsg.setText("Account number must be 16 digits long");
         } else {
 
             try {
@@ -205,15 +205,15 @@ public class SignIn extends javax.swing.JFrame {
                         break;
 
                     } else if (accountList.get(i)[2].equals(txtuser.getText()) && !accountList.get(i)[1].equals(txtpass.getPassword())) {
-                        System.out.println("The password entered for this account is wrong");
+                        lblErrorMsg.setText("The password entered for this account is wrong");
                         break;
                     } else {
-                        System.out.println("This account does not exist");
+                        lblErrorMsg.setText("This account does not exist");
                         break;
                     }
                 }
             } catch (Exception e) {
-                System.out.println("Please input valid inputs");
+                lblErrorMsg.setText("Please input valid inputs");
             }
         }
     }                                     
