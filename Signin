@@ -24,21 +24,19 @@ public class SignIn extends javax.swing.JFrame {
         
         public void getAccountLists(String fileName) throws IOException{
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            String accountNumber, fullName , password, balance, spacer;
+            String accountNumber, fullName , password, spacer;
 
             while ((accountNumber = reader.readLine()) != null) {
                 fullName = reader.readLine();
                 password = reader.readLine();
-                balance = reader.readLine();
                 spacer = reader.readLine();
 
                 if (accountNumber != null && fullName != null && password != null && spacer.startsWith("-")) {
                     
-                    String[] uniqueAccount = new String[4]; 
+                    String[] uniqueAccount = new String[3]; 
                     uniqueAccount[0] = accountNumber.split(":")[1].trim();
                     uniqueAccount[1] = fullName.split(":")[1].trim();
                     uniqueAccount[2] = password.split(":")[1].trim();
-                    uniqueAccount[3] = balance.split(":")[1].trim();
                     accountList.add(uniqueAccount);
                 }
             }
@@ -62,7 +60,7 @@ public class SignIn extends javax.swing.JFrame {
         lbluser = new javax.swing.JLabel();
         lblPass = new javax.swing.JLabel();
         txtuser = new javax.swing.JTextField();
-        txtpass = new javax.swing.JTextField();
+        txtpass = new javax.swing.JPasswordField();
         lblnoaccount = new javax.swing.JLabel();
         btnforgotpass = new javax.swing.JButton();
         btnlogin = new javax.swing.JButton();
@@ -169,7 +167,7 @@ public class SignIn extends javax.swing.JFrame {
 
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {
         
-        if (txtuser.getText().isEmpty() || txtpass.getText().isEmpty()) {
+        if (txtuser.getText().isEmpty() || txtpass.getPassword().length == 0) {
             System.out.println("Please input a username and password");
         }
         else if (!txtuser.getText().matches("[0-9]*")){
@@ -185,7 +183,7 @@ public class SignIn extends javax.swing.JFrame {
                 ArrayList<String[]> accountList = fileAccess.getAccountList();
                 
                 for (int i=0; i < accountList.size(); i++){ //linear search
-                    if (accountList.get(i)[2].equals(txtuser.getText()) && accountList.get(i)[1].equals(txtpass.getText())){
+                    if (accountList.get(i)[2].equals(txtuser.getText()) && accountList.get(i)[1].equals(txtpass.getPassword())){
                         
                         int index = i;
                         this.setVisible(false);
@@ -195,7 +193,7 @@ public class SignIn extends javax.swing.JFrame {
                         System.out.println("Logging in");
                         break;
                         
-                    } else  if (accountList.get(i)[2].equals(txtuser.getText()) && !accountList.get(i)[1].equals(txtpass.getText())){
+                    } else  if (accountList.get(i)[2].equals(txtuser.getText()) && !accountList.get(i)[1].equals(txtpass.getPassword())){
                         System.out.println("The password entered for this account is wrong");
                         break;
                     } else {
@@ -265,7 +263,7 @@ public class SignIn extends javax.swing.JFrame {
     private javax.swing.JLabel lblnoaccount;
     private javax.swing.JLabel lbltitle;
     private javax.swing.JLabel lbluser;
-    private javax.swing.JTextField txtpass;
+    private javax.swing.JPasswordField txtpass;
     private javax.swing.JTextField txtuser;
     // End of variables declaration                   
 }
