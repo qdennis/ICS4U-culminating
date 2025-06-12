@@ -1,7 +1,7 @@
 import java.awt.event.ActionEvent; //import all neccesary imports
 import java.awt.event.ActionListener;
 import java.util.List;
-
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -59,22 +59,25 @@ public class sendMoneyFrame extends JFrame implements ActionListener{
                 return;
             }
             else{
+                Account targetAccount = null;
+                String targetAccountId = "";
+                List<Account> accounts = user.getAccount();
                 if (selectedAccount.equals("Checking")){
-                    Account targetAccount = null;
-                    List<Account> accounts = user.getAccount();
-                    String targetAccountId = "Checking";
+                
+                    targetAccountId = "Checking";
+                }
+                    else if (selectedAccount.equals("Savings")){
+                    targetAccountId = "Savings";
+                    }
                     for (Account acc : accounts) {
                 if (acc.getAccountId().equals(targetAccountId)) {
             targetAccount = acc;
-        break;
-    }
-}
+                break;
+            }
+            //targetAccount.addBalance(amount);
+        }
             
         }
-        else{
-
-        }
-            }
 
             // TODO: Connect to actual transaction logic
             lblStatus.setText("Money sent to " + recipient + ": $" + amount);
@@ -82,4 +85,5 @@ public class sendMoneyFrame extends JFrame implements ActionListener{
             lblStatus.setText("Invalid amount.");
         }
     }
-    }
+}
+    

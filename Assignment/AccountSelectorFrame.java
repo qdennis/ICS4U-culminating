@@ -7,7 +7,7 @@ public class AccountSelectorFrame extends JFrame implements ActionListener {
     private JTextArea accountDetailsArea;
     //private User user;  // The user whose accounts we are selecting from
 
-    public AccountSelectorFrame(SignIn.user user) {
+    public AccountSelectorFrame(user user) {
         //this.user = user;
 
         setTitle("Select Account");

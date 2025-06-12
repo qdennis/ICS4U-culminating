@@ -1,7 +1,7 @@
+import java.util.ArrayList;
 public class user{ 
-        private ArrayList<Account> accounts;
+        private static ArrayList<Account> accounts;
         private String cardNumber;
-        private Map<String, Account> accountsChecker;
         public user (String cardNumberInput){
             cardNumber = cardNumberInput;
         }   
@@ -14,7 +14,7 @@ public class user{
         public void addAccount(Account acc){
         accounts.add(acc);
     }
-    public ArrayList<Account> getAccount(){
+    public static ArrayList<Account> getAccount(){
         return accounts;
     }
     }

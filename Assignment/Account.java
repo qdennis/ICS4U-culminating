@@ -32,31 +32,3 @@ public class Account {
     
     
 }
-public class SavingsAccount extends Account {
-    private double interestRate;
-
-    public SavingsAccount(String accountId, double initialBalance, double interestRate) {
-        super(accountId, initialBalance);
-        this.interestRate = interestRate;
-    }
-
-    @Override
-    public String getAccountType() {
-        return "Savings";
-    }
-
-    public double getInterestRate() {
-        return interestRate;
-    }
-}
-
-public class CheckingAccount extends Account {
-    public CheckingAccount(String accountId,double initialBalance) {
-        super(accountId, initialBalance);
-    }
-
-    @Override
-    public String getAccountType() {
-        return "Checking";
-    }
-}
