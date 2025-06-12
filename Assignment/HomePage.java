@@ -10,15 +10,21 @@
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 public class HomePage extends javax.swing.JFrame {
     
 
     /**
      * Creates new form HomePage
      */
- private static SignIn.user user;
-    public HomePage(SignIn.user user) {
+ private static user user;
+    public HomePage(user user) {
         this.user = user;
+        c acc = new c(user.getCardNumber(), 0);
+        user.addAccount(acc);
+        s acc2 = new s(user.getCardNumber(), 0,5);
+        user.addAccount(acc2);
+        String selectedAccount = "Checking";
         initComponents();
     }
 
@@ -62,7 +68,8 @@ public class HomePage extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnsendmoneyActionPerformed(evt);
                 user.getCardNumber();
-                new sendMoneyFrame();
+                
+                new sendMoneyFrame(user, selectedAccount );
             }
         });
 

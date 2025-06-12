@@ -1,5 +1,7 @@
 import java.awt.event.ActionEvent; //import all neccesary imports
 import java.awt.event.ActionListener;
+import java.util.List;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -12,7 +14,9 @@ public class sendMoneyFrame extends JFrame implements ActionListener{
     JLabel lblAmount = new JLabel("Amount:");
     JLabel lblTo = new JLabel("Recipient Username:");
     JLabel lblStatus = new JLabel("");
-    sendMoneyFrame(){
+    private String selectedAccount;
+    sendMoneyFrame(user user,String accountSelected){
+        selectedAccount = accountSelected;
         this.setTitle("Send Money");
         setSize(400, 250);
         setLayout(null);
@@ -53,6 +57,23 @@ public class sendMoneyFrame extends JFrame implements ActionListener{
             if (amount <= 0) {
                 lblStatus.setText("Enter a positive amount.");
                 return;
+            }
+            else{
+                if (selectedAccount.equals("Checking")){
+                    Account targetAccount = null;
+                    List<Account> accounts = user.getAccount();
+                    String targetAccountId = "Checking";
+                    for (Account acc : accounts) {
+                if (acc.getAccountId().equals(targetAccountId)) {
+            targetAccount = acc;
+        break;
+    }
+}
+            
+        }
+        else{
+
+        }
             }
 
             // TODO: Connect to actual transaction logic
