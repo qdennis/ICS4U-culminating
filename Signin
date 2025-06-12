@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.*;
 
 /*
@@ -16,6 +17,34 @@ public class SignIn extends javax.swing.JFrame {
      */
     public SignIn() {
         initComponents();
+    }
+    
+    public class AccountLoader{
+        private ArrayList<String[]> accountList = new ArrayList<>();
+        
+        public void getAccountLists(String fileName) throws IOException{
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            String accountNumber, fullName , password, spacer;
+
+            while ((accountNumber = reader.readLine()) != null) {
+                fullName = reader.readLine();
+                password = reader.readLine();
+                spacer = reader.readLine();
+
+                if (accountNumber != null && fullName != null && password != null && spacer.startsWith("-")) {
+                    
+                    String[] uniqueAccount = new String[3]; 
+                    uniqueAccount[0] = accountNumber.split(":")[1].trim();
+                    uniqueAccount[1] = fullName.split(":")[1].trim();
+                    uniqueAccount[2] = password.split(":")[1].trim();
+                    accountList.add(uniqueAccount);
+                }
+            }
+            reader.close(); //prevents memory leak
+        } 
+        public ArrayList<String[]> getAccountList(){
+            return accountList;
+        }
     }
 
     /**
@@ -136,42 +165,43 @@ public class SignIn extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                        
 
-    private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {                                         
-
-        try{    
-            String inputReversed = new StringBuilder(txtuser.getText()).reverse().toString();
-            String[] cardNumberSplit = inputReversed.split(""); //splits numbers into individual digits
-            List<Integer> cardNumberList = new ArrayList<>(); 
-            int sum1 = 0; // sums to validate credit card
-            int sum2 = 0; 
-
-            for (String digit : cardNumberSplit) {
-                cardNumberList.add(Integer.parseInt(digit)); //compiles seperated digits into a list
-            }
-
-            for (int i = 0; i < cardNumberList.size(); i++) { // for loop cycles through every iteration in the list
-                int digit = cardNumberList.get(i); // digit is the list at a specific index
-
-
-                if (i % 2 != 0) {// if the index is even, multiplies the number by 2
-                    digit *= 2; 
-                    if (digit > 9) {// if the number is greater than 9, subtracts 9 from the number
-                        digit -= 9;
+    private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {
+        
+        if (txtuser.getText().isEmpty() || txtpass.getText().isEmpty()) {
+            System.out.println("Please input a username and password");
+        }
+        else if (!txtuser.getText().matches("[0-9]*")){
+            System.out.println("Account number should have numbers only");
+        } else if (txtuser.getText().length() != 16) {
+            System.out.println("Account number must be 16 digits long");
+        }else {
+            
+            try{    
+                
+                AccountLoader fileAccess = new AccountLoader();
+                fileAccess.getAccountLists("src/AccountInfo.txt");
+                ArrayList<String[]> accountList = fileAccess.getAccountList();
+                
+                for (int i=0; i < accountList.size(); i++){ //linear search
+                    if (accountList.get(i)[2].equals(txtuser.getText()) && accountList.get(i)[1].equals(txtpass.getText())){
+                        
+                        //LOGIN GATEWAY
+                        
+                        System.out.println("Logging in");
+                        break;
+                        
+                    } else  if (accountList.get(i)[2].equals(txtuser.getText()) && !accountList.get(i)[1].equals(txtpass.getText())){
+                        System.out.println("The password entered for this account is wrong");
+                        break;
+                    } else {
+                        System.out.println("This account does not exist");
+                        break;
+                        }
                     }
-                    sum2 += digit; //if the index is even, add to sum 2
-                } else {
-                    sum1 += digit; //if the index is odd, add to sum 1
-                }
-            }
-            if ((sum1+sum2) % 10 == 0){
-                System.out.println("Valid");
-            } else {
-                System.out.println("Invalid");
-            }  
-        } catch (Exception e) {
-        System.out.println("Please input numerical numbers");
-    }
-
+            }catch (Exception e) {
+                System.out.println("Please input numerical numbers");
+            }        
+        }
     }                                        
 
     private void btnforgotpassActionPerformed(java.awt.event.ActionEvent evt) {                                              
