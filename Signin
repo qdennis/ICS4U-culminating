@@ -178,7 +178,7 @@ public class SignIn extends javax.swing.JFrame {
                        
 
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {
-        
+        lblErrorMsg.setText("");
         if (txtuser.getText().isEmpty() || txtpass.getPassword().length == 0) {
             lblErrorMsg.setText("Please input a username and password");
         } else if (!txtuser.getText().matches("[0-9]*")) {
