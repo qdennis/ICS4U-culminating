@@ -172,7 +172,7 @@ public class SignUp extends javax.swing.JFrame {
                 writer.write("Name: " + firstName + "\n");
                 writer.write("Password: " + password + "\n");
                 writer.write("Account Number: " + realAccountNumber + "\n");
-                writer.write("Balance: $0.00"); //defaulted balance
+                writer.write("Balance: $0.00" + "\n"); //defaulted balance
                 writer.write("---------------------------\n"); // separator for readability
                 System.out.println("Data successfully written to file.");
             } catch (IOException e) {
