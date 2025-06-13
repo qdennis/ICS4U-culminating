@@ -1,0 +1,6 @@
+Name: Dennis
+Password: 1234
+Account Number: 9376387362817718
+Checking Balance: 0
+Savings Balance: 0
+---------------------------
