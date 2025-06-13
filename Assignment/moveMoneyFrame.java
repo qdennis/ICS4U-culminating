@@ -80,7 +80,6 @@ public class moveMoneyFrame extends JFrame implements ActionListener {
                 } else if (selectedAccount.equals("Savings")) {
                     targetAccountId = "Savings";
                     for (Account acc : accounts) {
-                        System.out.println(acc.getAccountType());
                         if (acc.getAccountType().equals(targetAccountId)) {
                             savingsAccount = (s) acc;
                             savingsAccount.addBalance(amount);

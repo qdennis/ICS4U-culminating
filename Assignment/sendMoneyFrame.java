@@ -129,7 +129,6 @@ public class sendMoneyFrame extends JFrame implements ActionListener {
                 } else if (selectedAccount.equals("Savings")) {
                     targetAccountId = "Savings";
                     for (Account acc : accounts) {
-                        System.out.println(acc.getAccountType());
                         if (acc.getAccountType().equals(targetAccountId)) {
                             savingsAccount = (s) acc;
                             if (savingsAccount.withdraw(amount)){
@@ -146,14 +145,6 @@ public class sendMoneyFrame extends JFrame implements ActionListener {
                 }
                 }
             }
-
-
-            List<Account> accounts = user.getAccount();
-            for (Account acc : accounts) {
-                System.out.println(acc.getAccountType());
-                System.out.println(acc.getBalance());
-            }
-
         } catch (NumberFormatException ex) {
             lblStatus.setText("Invalid amount.");
         }

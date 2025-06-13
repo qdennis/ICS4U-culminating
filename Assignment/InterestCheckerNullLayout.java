@@ -1,18 +1,21 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class InterestCheckerNullLayout extends JFrame {
-
+    private static user user;
+    private static ArrayList<user> allUsers;
     private JTextField principalField, rateField, yearsField, resultField;
 
-    public InterestCheckerNullLayout() {
+    public InterestCheckerNullLayout(user user, ArrayList<user> allUsers) {
+        this.user = user;
+        this.allUsers = allUsers;
         setTitle("Recursive Interest Calculator (Null Layout)");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(null);  // <-- Using null layout
+        setLayout(null);
 
-        // Principal
         JLabel principalLabel = new JLabel("Principal Amount:");
         principalLabel.setBounds(30, 20, 120, 25);
         add(principalLabel);
@@ -21,7 +24,6 @@ public class InterestCheckerNullLayout extends JFrame {
         principalField.setBounds(160, 20, 180, 25);
         add(principalField);
 
-        // Interest Rate
         JLabel rateLabel = new JLabel("Interest Rate (%):");
         rateLabel.setBounds(30, 60, 120, 25);
         add(rateLabel);
@@ -30,7 +32,6 @@ public class InterestCheckerNullLayout extends JFrame {
         rateField.setBounds(160, 60, 180, 25);
         add(rateField);
 
-        // Years
         JLabel yearsLabel = new JLabel("Number of Years:");
         yearsLabel.setBounds(30, 100, 120, 25);
         add(yearsLabel);
@@ -39,7 +40,6 @@ public class InterestCheckerNullLayout extends JFrame {
         yearsField.setBounds(160, 100, 180, 25);
         add(yearsField);
 
-        // Final Balance
         JLabel resultLabel = new JLabel("Final Balance:");
         resultLabel.setBounds(30, 140, 120, 25);
         add(resultLabel);
@@ -49,12 +49,14 @@ public class InterestCheckerNullLayout extends JFrame {
         resultField.setEditable(false);
         add(resultField);
 
-        // Calculate Button
         JButton calculateButton = new JButton("Calculate");
-        calculateButton.setBounds(130, 190, 120, 30);
+        calculateButton.setBounds(80, 190, 100, 30);
         add(calculateButton);
 
-        // Action listener for button
+        JButton exitButton = new JButton("Exit");
+        exitButton.setBounds(200, 190, 100, 30);
+        add(exitButton);
+
         calculateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -67,17 +69,25 @@ public class InterestCheckerNullLayout extends JFrame {
                     resultField.setText(String.format("%.2f", result));
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null,
-                        "Please enter valid numbers.",
-                        "Input Error",
-                        JOptionPane.ERROR_MESSAGE);
+                            "Please enter valid numbers.",
+                            "Input Error",
+                            JOptionPane.ERROR_MESSAGE);
                 }
+            }
+        });
+
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose(); // Closes the window
+                HomePage HomePage = new HomePage(user,allUsers);
+                HomePage.setVisible(true);
             }
         });
 
         setVisible(true);
     }
 
-    // Recursive method to compute compound interest
     private double calculateRecursiveInterest(double principal, double rate, int years) {
         if (years == 0) {
             return principal;
@@ -87,6 +97,6 @@ public class InterestCheckerNullLayout extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new InterestCheckerNullLayout());
+        SwingUtilities.invokeLater(() -> new InterestCheckerNullLayout(user, allUsers));
     }
 }

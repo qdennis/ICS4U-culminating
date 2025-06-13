@@ -123,13 +123,11 @@ public class SignUp extends javax.swing.JFrame {
     private void btnconfirmActionPerformed(java.awt.event.ActionEvent evt) {                                           
         String firstName = txtusername.getText();
         String accountNumber = String.valueOf(Math.random()).substring(2,17);
-        System.out.println(accountNumber);
         char[] passwordChars = txtpassword.getPassword();
         String password = new String(passwordChars);
         char[] confirmChars = txtconfirmpassword.getPassword();
         String confirmPassword = new String(confirmChars);
         if (!password.equals(confirmPassword)) {
-            System.out.println("Passwords do not match!");
             JOptionPane.showMessageDialog(null, "passwords do not match!");
             return;
         }
@@ -162,37 +160,34 @@ public class SignUp extends javax.swing.JFrame {
                 }
             }
             int totalSum = sum1+sum2;
-            System.out.println(totalSum);
             int checkDigit = (10-(totalSum % 10)) % 10;
-            System.out.println(checkDigit);
-            System.out.println(accountNumber);
-            
             String realAccountNumber = "";
             
             
               
             try (FileWriter writer = new FileWriter("AccountInfo.txt", true)) { // 'true' appends to the file
-            if (firstName.isEmpty() || password.isEmpty()){
-                System.out.println("Missing entries");
+            if (firstName.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please enter your full name");
+            } else if (password.isEmpty()){
+                JOptionPane.showMessageDialog(null, "Please enter a password");
+            } else if (confirmPassword.isEmpty()){
+                JOptionPane.showMessageDialog(null, "Please confirm your passwoord");
             }
             else{
             realAccountNumber = accountNumber + checkDigit;
-            System.out.println(realAccountNumber);
                 writer.write("Name: " + firstName + "\n");
                 writer.write("Password: " + password + "\n");
                 writer.write("Account Number: " + realAccountNumber + "\n");
                 writer.write("Checking Balance: " + "0" + "\n");
                 writer.write("Savings Balance: " + "0" + "\n");
                 writer.write("---------------------------\n"); // separator for readability
-                System.out.println("Data successfully written to file.");
-                this.setVisible(false);
-                SignIn newFrame = new SignIn();
-                newFrame.setVisible(true);
                 JOptionPane.showMessageDialog(null, "Welcome to Tung Bank Sahur!" + "\n" + "Your account number is: "  + realAccountNumber + "\n"+ "Please write this down and safe for future use, you will use this to sign in.");
+                SignIn newFrame = new SignIn();
+                this.setVisible(false);
+                newFrame.setVisible(true);
             }
             } catch (IOException e) {
-                System.out.println("An error occurred while writing to file.");
-                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "An error occured trying to compile your data");
             }
 
         }

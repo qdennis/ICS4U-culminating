@@ -84,7 +84,7 @@ public class FAQ extends javax.swing.JFrame {
 
         lblAnswer4.setText("*If you happen to lose your account number, there is no way to retrieve your account. Please write it down somewhere");
 
-        lblAnswer5.setText("*Your data is securely stored and encrypted locally. ");
+        lblAnswer5.setText("*Your data is securely stored locally so rest assured knowing that your data cannot be externally accessed. ");
 
         lblQ5.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         lblQ5.setText("5. Is my data safe at TBS?");
