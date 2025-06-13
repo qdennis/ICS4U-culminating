@@ -43,7 +43,7 @@ public class HomePage extends javax.swing.JFrame {
         lblTBS.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); 
         lblTBS.setText("TBS");
 
-        lblWelcome.setText(user.getName());
+        lblWelcome.setText("Welcome," + user.getName());
 
         lblID.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); 
         lblID.setText("Account #ID: " + user.getCardNumber());
