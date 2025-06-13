@@ -178,6 +178,9 @@ public class SignUp extends javax.swing.JFrame {
                 writer.write("Savings Balance: " + "0" + "\n");
                 writer.write("---------------------------\n"); // separator for readability
                 System.out.println("Data successfully written to file.");
+                this.setVisible(false);
+                SignIn newFrame = new SignIn();
+                newFrame.setVisible(true);
             } catch (IOException e) {
                 System.out.println("An error occurred while writing to file.");
                 e.printStackTrace();
