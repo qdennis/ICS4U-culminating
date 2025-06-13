@@ -1,22 +1,31 @@
 import java.awt.event.ActionEvent; //import all neccesary imports
 import java.awt.event.ActionListener;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class sendMoneyFrame extends JFrame implements ActionListener{
+public class sendMoneyFrame extends JFrame implements ActionListener {
+    Account targetAccount = null;
+    c checkingAccount = null;
+    s savingsAccount = null;
     JTextField txfRecipient = new JTextField();
     JButton btnSend = new JButton("Send");
+    JButton btnBack = new JButton("Back"); // ← New back button
     JTextField txfAmount = new JTextField();
     JLabel lblAmount = new JLabel("Amount:");
     JLabel lblTo = new JLabel("Recipient Username:");
     JLabel lblStatus = new JLabel("");
     private String selectedAccount;
-    sendMoneyFrame(user user,String accountSelected){
-        selectedAccount = accountSelected;
+    private static ArrayList<user> allUsers;
+    private user user;
+
+    sendMoneyFrame(user user, String accountSelected, ArrayList<user> allUsers) {
+        this.user = user;
+        this.allUsers = allUsers;
+        selectedAccount = user.getType();
         this.setTitle("Send Money");
         setSize(400, 250);
         setLayout(null);
@@ -38,12 +47,23 @@ public class sendMoneyFrame extends JFrame implements ActionListener{
         btnSend.addActionListener(this);
         add(btnSend);
 
+        // Back button setup
+        btnBack.setBounds(10, 10, 80, 25);
+        btnBack.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose(); // Close this frame
+                new HomePage(user, allUsers); // Return to HomePage
+            }
+        });
+        add(btnBack); // Add to frame
+
         lblStatus.setBounds(30, 170, 300, 25);
         add(lblStatus);
 
         setVisible(true);
     }
-     public void actionPerformed(ActionEvent e) {
+
+    public void actionPerformed(ActionEvent e) {
         String recipient = txfRecipient.getText().trim();
         String amountText = txfAmount.getText().trim();
 
@@ -57,33 +77,41 @@ public class sendMoneyFrame extends JFrame implements ActionListener{
             if (amount <= 0) {
                 lblStatus.setText("Enter a positive amount.");
                 return;
-            }
-            else{
-                Account targetAccount = null;
+            } else {
                 String targetAccountId = "";
                 List<Account> accounts = user.getAccount();
-                if (selectedAccount.equals("Checking")){
-                
-                    targetAccountId = "Checking";
-                }
-                    else if (selectedAccount.equals("Savings")){
-                    targetAccountId = "Savings";
-                    }
-                    for (Account acc : accounts) {
-                if (acc.getAccountId().equals(targetAccountId)) {
-            targetAccount = acc;
-                break;
-            }
-            //targetAccount.addBalance(amount);
-        }
-            
-        }
 
-            // TODO: Connect to actual transaction logic
+                if (selectedAccount.equals("Checking")) {
+                    targetAccountId = "Checking";
+                    for (Account acc : accounts) {
+                        if (acc.getAccountType().equals(targetAccountId)) {
+                            checkingAccount = (c) acc;
+                            checkingAccount.addBalance(amount);
+                            FileHandler.saveAllUsers("AccountInfo.txt", allUsers);
+                        }
+                    }
+                } else if (selectedAccount.equals("Savings")) {
+                    targetAccountId = "Savings";
+                    for (Account acc : accounts) {
+                        System.out.println(acc.getAccountType());
+                        if (acc.getAccountType().equals(targetAccountId)) {
+                            savingsAccount = (s) acc;
+                            savingsAccount.addBalance(amount);
+                            FileHandler.saveAllUsers("AccountInfo.txt", allUsers);
+                        }
+                    }
+                }
+            }
+
             lblStatus.setText("Money sent to " + recipient + ": $" + amount);
+            List<Account> accounts = user.getAccount();
+            for (Account acc : accounts) {
+                System.out.println(acc.getAccountType());
+                System.out.println(acc.getBalance());
+            }
+
         } catch (NumberFormatException ex) {
             lblStatus.setText("Invalid amount.");
         }
     }
 }
-    

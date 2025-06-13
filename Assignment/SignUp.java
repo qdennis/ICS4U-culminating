@@ -4,6 +4,7 @@
  */
 import java.util.*;
 import java.io.*;
+import javax.swing.JOptionPane;
 /**
  *
  * @author esmondlam
@@ -167,11 +168,14 @@ public class SignUp extends javax.swing.JFrame {
             
             String realAccountNumber = accountNumber + checkDigit;
             System.out.println(realAccountNumber);
+            JOptionPane.showMessageDialog(null, "Your number is " + realAccountNumber);
               
             try (FileWriter writer = new FileWriter("AccountInfo.txt", true)) { // 'true' appends to the file
                 writer.write("Name: " + firstName + "\n");
                 writer.write("Password: " + password + "\n");
                 writer.write("Account Number: " + realAccountNumber + "\n");
+                writer.write("Checking Balance: " + "0" + "\n");
+                writer.write("Savings Balance: " + "0" + "\n");
                 writer.write("---------------------------\n"); // separator for readability
                 System.out.println("Data successfully written to file.");
             } catch (IOException e) {

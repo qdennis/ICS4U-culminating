@@ -1,6 +1,5 @@
 
 public class c extends Account {
-    private double balance;
     public c(String accountId,double initialBalance) {
         super(accountId, initialBalance);
     }
@@ -10,6 +9,7 @@ public class c extends Account {
         return "Checking";
     }
     public void addBalance(double balanceEntry){
-        balance = balance + balanceEntry;
+        deposit(balanceEntry);
     }
+
 }

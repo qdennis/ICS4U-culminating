@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  * @author esmondlam
  */
 public class SignIn extends javax.swing.JFrame {
-
+    ArrayList<user> allUsers = new ArrayList<>();
     /**
      * Creates new form GUI
      */
@@ -29,23 +29,42 @@ public class SignIn extends javax.swing.JFrame {
 System.out.println("Looking for file at: " + file.getAbsolutePath());
 System.out.println("File exists: " + file.exists());
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            String accountNumber, fullName , password, spacer;
+            String accountNumber, fullName , password, spacer, checkingAccount, savingAccount;
             
-            while ((accountNumber = reader.readLine()) != null) {
-                fullName = reader.readLine();
-                password = reader.readLine();
-                spacer = reader.readLine();
-                
+            while (true) {
+    accountNumber = reader.readLine();
+    if (accountNumber == null) break;
 
-                if (accountNumber != null && fullName != null && password != null && spacer.startsWith("-")) {
-                    
-                    String[] uniqueAccount = new String[3]; 
-                    uniqueAccount[0] = accountNumber.split(":")[1].trim();
-                    uniqueAccount[1] = fullName.split(":")[1].trim();
-                    uniqueAccount[2] = password.split(":")[1].trim();
-                    accountList.add(uniqueAccount);
-                }
-            }
+    fullName = reader.readLine();
+    password = reader.readLine();
+    checkingAccount = reader.readLine();
+    savingAccount = reader.readLine();
+    spacer = reader.readLine(); // ---------------------------
+
+    if (fullName == null || password == null || checkingAccount == null ||
+        savingAccount == null || spacer == null) break;
+
+    if (!spacer.startsWith("-")) continue;
+
+    String[] userInfo = new String[5];
+    userInfo[0] = accountNumber.split(":")[1].trim();
+    userInfo[1] = fullName.split(":")[1].trim();
+    userInfo[2] = password.split(":")[1].trim();  // <-- assign before printing
+    userInfo[3] = checkingAccount.split(":")[1].trim();
+    userInfo[4] = savingAccount.split(":")[1].trim();
+
+    System.out.println("Loaded user: " + Arrays.toString(userInfo));
+
+    user userObj = new user(userInfo[2], userInfo[0], userInfo[1]);
+    c acc = new c(userObj.getCardNumber(), Double.parseDouble(userInfo[3]));
+    s acc2 = new s(userObj.getCardNumber(), Double.parseDouble(userInfo[4]), 5);
+    allUsers.add(userObj);
+    userObj.addAccount(acc);
+    userObj.addAccount(acc2);
+    userObj.updateType("Checking");
+    
+    accountList.add(userInfo);
+}
             reader.close(); //prevents memory leak
 
         } 
@@ -175,6 +194,7 @@ System.out.println("File exists: " + file.exists());
 
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {
         
+        
         if (txtuser.getText().isEmpty() || txtpass.getText().isEmpty()) {
             System.out.println("Please input a username and password");
         }
@@ -191,26 +211,30 @@ System.out.println("File exists: " + file.exists());
                 fileAccess.getAccountLists("AccountInfo.txt");
                 ArrayList<String[]> accountList = fileAccess.getAccountList();
                 
-                for (int i=0; i < accountList.size(); i++){ //linear search
-                    if (accountList.get(i)[2].equals(txtuser.getText()) && accountList.get(i)[1].equals(txtpass.getText())){
-                        
-                        //LOGIN GATEWAY
-                        user user = new user(accountList.get(i)[2]);
-                        System.out.println("Logging in");
-                        HomePage newFrame = new HomePage(user);
-                        newFrame.setVisible(true);
-                        
-                        
-                        break;
-                        
-                    } else  if (accountList.get(i)[2].equals(txtuser.getText()) && !accountList.get(i)[1].equals(txtpass.getText())){
-                        System.out.println("The password entered for this account is wrong");
-                        break;
-                    } else {
-                        System.out.println("This account does not exist");
-                        break;
-                        }
-                    }
+                boolean found = false;
+
+
+    for (user a : allUsers){
+
+    
+    if(a.getCardNumber().equals(txtuser.getText()) && a.getPassword().equals(txtpass.getText())) {
+        // login success
+        
+        System.out.println("Logging in");
+        dispose();
+        HomePage newFrame = new HomePage(a, allUsers);
+        found = true;
+        break;
+    } else if (a.getCardNumber().equals(txtuser.getText())) {
+        System.out.println("The password entered for this account is wrong");
+        found = true;
+        break;
+    }
+}
+
+if (!found) {
+    System.out.println("This account does not exist");
+}
             }catch (Exception e) {
                 System.out.println("Please input numerical numbers");
                 System.out.println(e.getMessage());

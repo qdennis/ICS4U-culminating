@@ -1,0 +1,7 @@
+---------------------------
+Name: ddd
+Password: 1234
+Account Number: 5927895604162463
+Checking Balance: 500.0
+Savings Balance: 0.0
+---------------------------

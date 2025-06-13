@@ -1,8 +1,15 @@
 import java.util.ArrayList;
 public class user{ 
-        private static ArrayList<Account> accounts;
+        private ArrayList<Account> accounts;
         private String cardNumber;
-        public user (String cardNumberInput){
+        private String accountType;
+        private String name;
+        private String password;
+        private ArrayList<user> userList;
+        public user (String cardNumberInput, String name, String password){
+            accounts = new ArrayList<>();
+            this.name = name;
+            this. password = password;
             cardNumber = cardNumberInput;
         }   
         public int addBalance(int amountInput){
@@ -14,7 +21,19 @@ public class user{
         public void addAccount(Account acc){
         accounts.add(acc);
     }
-    public static ArrayList<Account> getAccount(){
+    public ArrayList<Account> getAccount(){
         return accounts;
+    }
+    public void updateType(String type){
+        accountType = type;
+    }
+    public String getName(){
+        return name;
+    }
+    public String getPassword(){
+        return password;
+    }
+    public String getType(){
+        return accountType;
     }
     }

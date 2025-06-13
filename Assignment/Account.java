@@ -5,7 +5,7 @@ public class Account {
 
     public Account(String accountId, double initialBalance) {
         this.accountId = accountId;
-        this.balance = 0;
+        this.balance = initialBalance;
     }
 
     public String getAccountId() {

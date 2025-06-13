@@ -1,5 +1,6 @@
 public class s extends Account {
     private double interestRate;
+    private double balance;
 
     public s(String accountId, double initialBalance, double interestRate) {
         super(accountId, initialBalance);
@@ -13,5 +14,8 @@ public class s extends Account {
 
     public double getInterestRate() {
         return interestRate;
+    }
+    public void addBalance(double balanceEntry){
+        deposit(balanceEntry);
     }
 }

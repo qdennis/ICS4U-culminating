@@ -1,4 +1,12 @@
-Name: aaa
+Name: d
 Password: 1234
-Account Number: 1830410140838041
+Account Number: 8625607951375260
+Checking Balance: 22.0
+Savings Balance: 8.0
+---------------------------
+Name: dd
+Password: 1234
+Account Number: 2518917190623047
+Checking Balance: 20.0
+Savings Balance: 15.0
 ---------------------------

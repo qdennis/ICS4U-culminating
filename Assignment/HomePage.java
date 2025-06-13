@@ -7,6 +7,7 @@
  *
  * @author esmondlam
  */
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,13 +19,13 @@ public class HomePage extends javax.swing.JFrame {
      * Creates new form HomePage
      */
  private static user user;
-
-    public HomePage(user user) {
+ private static ArrayList<user> allUsers;
+private String selected;
+    public HomePage(user user, ArrayList<user> allUsers) {
         this.user = user;
-        c acc = new c(user.getCardNumber(), 0);
-        user.addAccount(acc);
-        s acc2 = new s(user.getCardNumber(), 0,5);
-        user.addAccount(acc2);
+        this.allUsers = allUsers;
+        
+        this.setVisible(true);
         initComponents();
     }
 
@@ -69,7 +70,7 @@ public class HomePage extends javax.swing.JFrame {
                 btnsendmoneyActionPerformed(evt);
                 user.getCardNumber();
                 String selectedAccount = "Checking";
-                new sendMoneyFrame(user, selectedAccount);
+                new sendMoneyFrame(user, selectedAccount, allUsers);
             }
         });
 
@@ -84,6 +85,7 @@ public class HomePage extends javax.swing.JFrame {
         btnhelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnhelpActionPerformed(evt);
+                System.out.println(user.getType());
             }
         });
 
@@ -98,7 +100,8 @@ public class HomePage extends javax.swing.JFrame {
         btnaccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnaccountActionPerformed(evt);
-                new AccountSelectorFrame(user);
+                dispose();
+                new AccountSelectorFrame(user, allUsers);
             }
         });
 
@@ -223,7 +226,7 @@ public class HomePage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HomePage(user).setVisible(true);
+               new HomePage(user, allUsers ).setVisible(true);
             }
         });
     }
