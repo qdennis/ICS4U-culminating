@@ -18,4 +18,7 @@ public class s extends Account {
     public void addBalance(double balanceEntry){
         deposit(balanceEntry);
     }
+    public void removeBalance(double balanceEntry){
+        withdraw(balanceEntry);
+    }
 }

@@ -130,6 +130,7 @@ public class SignUp extends javax.swing.JFrame {
         String confirmPassword = new String(confirmChars);
         if (!password.equals(confirmPassword)) {
             System.out.println("Passwords do not match!");
+            JOptionPane.showMessageDialog(null, "passwords do not match!");
             return;
         }
 
@@ -166,11 +167,17 @@ public class SignUp extends javax.swing.JFrame {
             System.out.println(checkDigit);
             System.out.println(accountNumber);
             
-            String realAccountNumber = accountNumber + checkDigit;
-            System.out.println(realAccountNumber);
-            JOptionPane.showMessageDialog(null, "Your number is " + realAccountNumber);
+            String realAccountNumber = "";
+            
+            
               
             try (FileWriter writer = new FileWriter("AccountInfo.txt", true)) { // 'true' appends to the file
+            if (firstName.isEmpty() || password.isEmpty()){
+                System.out.println("Missing entries");
+            }
+            else{
+            realAccountNumber = accountNumber + checkDigit;
+            System.out.println(realAccountNumber);
                 writer.write("Name: " + firstName + "\n");
                 writer.write("Password: " + password + "\n");
                 writer.write("Account Number: " + realAccountNumber + "\n");
@@ -181,6 +188,8 @@ public class SignUp extends javax.swing.JFrame {
                 this.setVisible(false);
                 SignIn newFrame = new SignIn();
                 newFrame.setVisible(true);
+                JOptionPane.showMessageDialog(null, "Welcome to Tung Bank Sahur!" + "\n" + "Your account number is: "  + realAccountNumber + "\n"+ "Please write this down and safe for future use, you will use this to sign in.");
+            }
             } catch (IOException e) {
                 System.out.println("An error occurred while writing to file.");
                 e.printStackTrace();

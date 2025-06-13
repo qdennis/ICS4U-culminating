@@ -11,5 +11,8 @@ public class c extends Account {
     public void addBalance(double balanceEntry){
         deposit(balanceEntry);
     }
+    public void removeBalance (double balanceEntry){
+        withdraw(balanceEntry);
+    }
 
 }

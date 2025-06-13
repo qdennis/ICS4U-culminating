@@ -86,7 +86,7 @@ System.out.println("File exists: " + file.exists());
         lbluser = new javax.swing.JLabel();
         lblPass = new javax.swing.JLabel();
         txtuser = new javax.swing.JTextField();
-        txtpass = new javax.swing.JTextField();
+        txtpass = new javax.swing.JPasswordField();
         lblnoaccount = new javax.swing.JLabel();
         btnforgotpass = new javax.swing.JButton();
         btnlogin = new javax.swing.JButton();
@@ -193,9 +193,10 @@ System.out.println("File exists: " + file.exists());
     }// </editor-fold>                        
 
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {
+        char[] passwordChars = txtpass.getPassword();
+        String password = new String(passwordChars);
         
-        
-        if (txtuser.getText().isEmpty() || txtpass.getText().isEmpty()) {
+        if (password.isEmpty() || password.length() == 0) {
             System.out.println("Please input a username and password");
         }
         else if (!txtuser.getText().matches("[0-9]*")){
@@ -219,6 +220,7 @@ System.out.println("File exists: " + file.exists());
     
     if(a.getCardNumber().equals(txtuser.getText()) && a.getPassword().equals(txtpass.getText())) {
         // login success
+        
         
         System.out.println("Logging in");
         dispose();
@@ -298,7 +300,7 @@ if (!found) {
     private javax.swing.JLabel lblnoaccount;
     private javax.swing.JLabel lbltitle;
     private javax.swing.JLabel lbluser;
-    private javax.swing.JTextField txtpass;
+    private javax.swing.JPasswordField txtpass;
     private javax.swing.JTextField txtuser;
     // End of variables declaration                   
 }

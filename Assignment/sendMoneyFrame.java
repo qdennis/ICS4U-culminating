@@ -11,6 +11,8 @@ public class sendMoneyFrame extends JFrame implements ActionListener {
     Account targetAccount = null;
     c checkingAccount = null;
     s savingsAccount = null;
+    c checkingAccountRecipient = null;
+    s savingsAccountRecipient = null;
     JTextField txfRecipient = new JTextField();
     JButton btnSend = new JButton("Send");
     JButton btnBack = new JButton("Back"); // ← New back button
@@ -73,6 +75,18 @@ public class sendMoneyFrame extends JFrame implements ActionListener {
         }
 
         try {
+            user recipientUser = null;
+            boolean found = false;
+            for (user a : allUsers){
+                if(recipient.equals(a.getName())){
+                    recipientUser = a;
+                    found = true;
+                }
+            }
+            if (!found){
+                lblStatus.setText("No recipient found");
+            }
+            else{
             double amount = Double.parseDouble(amountText);
             if (amount <= 0) {
                 lblStatus.setText("Enter a positive amount.");
@@ -80,14 +94,36 @@ public class sendMoneyFrame extends JFrame implements ActionListener {
             } else {
                 String targetAccountId = "";
                 List<Account> accounts = user.getAccount();
-
+                List<Account> recipientAccounts = recipientUser.getAccount();
+                if (selectedAccount.equals("Checking")){
+                    targetAccountId = "Checking";
+                for (Account accs : recipientAccounts){
+                    if (accs.getAccountType().equals(targetAccountId)){
+                        checkingAccountRecipient = (c) accs;
+                    }
+                }
+            }
+            else if (selectedAccount.equals("Savings")){
+                targetAccountId = "Savings";
+                for (Account accs: recipientAccounts){
+                    if (accs.getAccountType().equals(targetAccountId)){
+                        savingsAccountRecipient = (s) accs;
+                    }
+                }
+            }
                 if (selectedAccount.equals("Checking")) {
                     targetAccountId = "Checking";
                     for (Account acc : accounts) {
                         if (acc.getAccountType().equals(targetAccountId)) {
-                            checkingAccount = (c) acc;
-                            checkingAccount.addBalance(amount);
-                            FileHandler.saveAllUsers("AccountInfo.txt", allUsers);
+                            checkingAccount = (c) acc; //boolean?
+                            if (checkingAccount.withdraw(amount)){
+                                checkingAccountRecipient.addBalance(amount);
+                                FileHandler.saveAllUsers("AccountInfo.txt", allUsers);
+                                lblStatus.setText("Money sent to " + recipient + ": $" + amount);
+                            }
+                            else{
+                               lblStatus.setText("Not enough funds"); 
+                            }
                         }
                     }
                 } else if (selectedAccount.equals("Savings")) {
@@ -96,14 +132,22 @@ public class sendMoneyFrame extends JFrame implements ActionListener {
                         System.out.println(acc.getAccountType());
                         if (acc.getAccountType().equals(targetAccountId)) {
                             savingsAccount = (s) acc;
-                            savingsAccount.addBalance(amount);
-                            FileHandler.saveAllUsers("AccountInfo.txt", allUsers);
+                            if (savingsAccount.withdraw(amount)){
+                                savingsAccountRecipient.addBalance(amount);
+                                FileHandler.saveAllUsers("AccountInfo.txt", allUsers);
+                                lblStatus.setText("Money sent to " + recipient + ": $" + amount);
+                            }
+                            else{
+                               lblStatus.setText("Not enough funds"); 
+                            }
+
                         }
                     }
                 }
+                }
             }
 
-            lblStatus.setText("Money sent to " + recipient + ": $" + amount);
+
             List<Account> accounts = user.getAccount();
             for (Account acc : accounts) {
                 System.out.println(acc.getAccountType());

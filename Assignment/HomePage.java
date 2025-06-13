@@ -28,6 +28,12 @@ private String selected;
         this.setVisible(true);
         initComponents();
     }
+    
+    public HomePage(ArrayList<String[]> accountInfo, int index){
+        initComponents();
+        
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,10 +45,10 @@ private String selected;
     private void initComponents() {
 
         lblTBS = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblWelcome = new javax.swing.JLabel();
         lblID = new javax.swing.JLabel();
         lblbalnc = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblMoney = new javax.swing.JLabel();
         btnsendmoney = new javax.swing.JButton();
         btnlivestock = new javax.swing.JButton();
         btnhelp = new javax.swing.JButton();
@@ -55,14 +61,37 @@ private String selected;
         lblTBS.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         lblTBS.setText("TBS");
 
-        jLabel2.setText("settext to username");
+        lblWelcome.setText(user.getName());
 
         lblID.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         lblID.setText("Account #ID: " + user.getCardNumber());
 
         lblbalnc.setText("Balance:");
+        String selectedAccount = user.getType();
+        String targetAccountId = "";
+        c checkingAccount = null;
+        s savingsAccount = null;
+                List<Account> accounts = user.getAccount();
 
-        jLabel5.setText("x.xx");
+                if (selectedAccount.equals("Checking")) {
+                    targetAccountId = "Checking";
+                    for (Account acc : accounts) {
+                        if (acc.getAccountType().equals(targetAccountId)) {
+                            checkingAccount = (c) acc;
+                            lblMoney.setText(String.valueOf("$" + checkingAccount.getBalance()));
+                        }
+                    }
+                } else if (selectedAccount.equals("Savings")) {
+                    targetAccountId = "Savings";
+                    for (Account acc : accounts) {
+                        System.out.println(acc.getAccountType());
+                        if (acc.getAccountType().equals(targetAccountId)) {
+                            savingsAccount = (s) acc;
+                            savingsAccount.getBalance();
+                            lblMoney.setText(String.valueOf("$" + savingsAccount.getBalance()));
+                        }
+                    }
+                }
 
         btnsendmoney.setText("Send Money");
         btnsendmoney.addActionListener(new java.awt.event.ActionListener() {
@@ -86,6 +115,7 @@ private String selected;
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnhelpActionPerformed(evt);
                 System.out.println(user.getType());
+                new FAQ(user, allUsers);
             }
         });
 
@@ -93,6 +123,9 @@ private String selected;
         btnsignout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnsignoutActionPerformed(evt);
+                dispose();
+                SignIn newFrame = new SignIn();
+                newFrame.setVisible(true);
             }
         });
 
@@ -109,7 +142,8 @@ private String selected;
         btnmovemoney.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnmovemoneyActionPerformed(evt);
-                new moveMoneyFrame();
+                dispose();
+                new moveMoneyFrame(user, allUsers);
             }
         });
 
@@ -123,13 +157,13 @@ private String selected;
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblbalnc)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5)
+                        .addComponent(lblMoney)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnmovemoney))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblTBS)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2))
+                        .addComponent(lblWelcome))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnlivestock)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -150,7 +184,7 @@ private String selected;
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTBS)
-                    .addComponent(jLabel2))
+                    .addComponent(lblWelcome))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblID)
@@ -158,7 +192,7 @@ private String selected;
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblbalnc)
-                    .addComponent(jLabel5)
+                    .addComponent(lblMoney)
                     .addComponent(btnmovemoney))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -238,8 +272,8 @@ private String selected;
     private javax.swing.JButton btnmovemoney;
     private javax.swing.JButton btnsendmoney;
     private javax.swing.JButton btnsignout;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel lblWelcome;
+    private javax.swing.JLabel lblMoney;
     private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblTBS;
     private javax.swing.JLabel lblbalnc;
